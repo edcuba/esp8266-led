@@ -6,8 +6,10 @@ body{color:#526066;}h2,h3{letter-spacing:0.25em;text-transform:uppercase;font-we
 .pricing-tables,.information {max-width: 980px;margin: 0 auto;}
 .pricing-tables{margin-bottom: 3.125em;text-align: center;}
 .pricing-table {border: 1px solid #ddd;margin: 0 0.5em 2em;padding: 0 0 3em;}
-.pricing-table-free .pricing-table-header{background: #519251;}
-.pricing-table-biz .pricing-table-header{background: #2c4985;}
+.pricing-table-free .pricing-table-header{background: #63B4D1 ;}
+.pricing-table-biz .pricing-table-header{background: #7699D4;}
+.pricing-table-third .pricing-table-header{background: #9448BC;}
+.pricing-table-blink .pricing-table-header{background: #480355;}
 .pricing-table-header{background: #111;color: #fff;}
 .pricing-table-header h2{margin: 0;padding-top: 2em;font-size: 1em;font-weight: normal;}
 .pricing-table-price{font-size: 6em;margin: 0.2em 0 0;font-weight: 100;}
