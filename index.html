@@ -1,7 +1,45 @@
-<!DOCTYPE html>
-<html>
-    <head> <title>ESP8266 Pins</title> </head>
-    <body> <h1>ESP8266 Pins</h1>
-        <table border="1"> <tr><th>Pin</th><th>Value</th></tr> %s </table>
-    </body>
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>ESP8266 Controller</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="banner"><h1 class="banner-head">ESP8266 Controller</h1></div>
+<div class="l-content">
+ <div class="pricing-tables pure-g">
+  <div class="pure-u-1 pure-u-md-1-2">
+   <div class="pricing-table pricing-table-free">
+    <div class="pricing-table-header">
+     <h2>LED</h2>
+     <span class="pricing-table-price">$LED_STATUS</span>
+    </div>
+    <form action="TOOGLE_LED">
+     <input type="submit" value="Toogle" class="button-choose pure-button"/>
+    </form>
+   </div>
+  </div>
+  <div class="pure-u-1 pure-u-md-1-2">
+   <div class="pricing-table pricing-table-biz pricing-table-selected">
+    <div class="pricing-table-header">
+     <h2>Blink</h2>
+     <span class="pricing-table-price">$BLINK_STATUS</span>
+    </div>
+    <form action="TOOGLE_BLINK">
+     <input type="submit" value="Toogle" class="button-choose pure-button"/>
+    </form>
+   </div>
+  </div>
+ </div>
+ <div class="information pure-g">
+  <div class="pure-u-1 pure-u-md-1-1">
+   <div class="l-box">
+    <h3 class="information-head">System info</h3>
+    <p>$SYSTEM_INFO</p>
+   </div>
+   </div>
+ </div>
+</div>
+<div class="footer l-box"><p>Eduard Čuba 2017</p>
+</div>
+</body>
 </html>
