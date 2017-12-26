@@ -9,7 +9,8 @@ body{color:#526066;}h2,h3{letter-spacing:0.25em;text-transform:uppercase;font-we
 .pricing-table-free{background:#63B4D1;}
 .pricing-table-biz{background:#7699D4;}
 .pricing-table-third{background:#9448BC;}
-.pricing-table-blink{background:#480355;}
+.pricing-table-blink{background:#1B998B;}
+.pricing-table-rotate{background:#480355;}
 .pricing-table-header{color:#fff;cursor:pointer;}
 .pricing-table-header h2{margin: 0;padding-top: 2em;font-size: 1em;font-weight: normal;}
 .pricing-table-price{font-size: 6em;margin: 0.2em 0 0;font-weight: 100;}

@@ -1,3 +1,10 @@
+# Author: Eduard Cuba
+# Email: xcubae00@stud.fit.vutbr.cz
+# original
+# Last modified: 26.12.2017
+# Desc: Simple HTTP server for ESP8266 LED control
+
+
 import machine
 import network
 import socket
@@ -36,12 +43,15 @@ p4 = machine.Pin(4, machine.Pin.OUT, value=0)
 p16 = machine.Pin(16, machine.Pin.OUT, value=1)
 
 class ConfigHolder:
-    """ Configuration object """
+    """ Configuration holder object """
     p2e = False
     p4e = False
     p16e = False
     blink = False
+    rotate = False
+    rotateState = 0
 config = ConfigHolder()
+
 
 def handleAsset(what, client):
     """ Handle asset file (*.css, *.ico) """
@@ -57,6 +67,16 @@ def handleAsset(what, client):
     except Exception as e:
         print(e)
 
+
+def resetLEDs():
+    config.p2e = True
+    config.p4e = True
+    config.p16e = True
+    p2.off()
+    p4.on()
+    p16.off()
+
+
 def handleGET(what, rest, client):
     """ Respond to GET request """
     # read the message
@@ -64,10 +84,8 @@ def handleGET(what, rest, client):
         line = rest.readline()
         if not line or line == b'\r\n':
             break
-
     # get requested attribute
     what = what[1:].decode("utf-8")
-
     # LED toogle request
     if what.startswith("TOOGLE_LED2"):
         config.p2e = not config.p2e
@@ -78,6 +96,15 @@ def handleGET(what, rest, client):
     elif what.startswith("BLINK"):
         # sequence request
         config.blink = not config.blink
+        if config.blink:
+            config.rotate = False
+            resetLEDs()
+    elif what.startswith("ROTATE"):
+        # rotation request
+        config.rotate = not config.rotate
+        if config.rotate:
+            config.blink = False
+            resetLEDs()
     elif what.endswith("css") or what.endswith("ico"):
         # asset request
         return handleAsset(what, client)
@@ -87,7 +114,9 @@ def handleGET(what, rest, client):
     res = res.replace("$LED4_STATUS", "ON" if config.p4e else "OFF", 1)
     res = res.replace("$LED16_STATUS", "ON" if config.p16e else "OFF", 1)
     res = res.replace("$BLINK_STATUS", "ON" if config.blink else "OFF", 1)
+    res = res.replace("$ROTATE_STATUS", "ON" if config.rotate else "OFF", 1)
     client.write(res)
+
 
 def refresh():
     """ Set pin voltages according to configuration """
@@ -105,15 +134,21 @@ def refresh():
             p16.value(not p16.value())
         else:
             p16.value(True)
+    elif config.rotate:
+        # rotation
+        config.rotateState = (config.rotateState + 1) % 3
+        p2.value(not (config.rotateState == 0 and config.p2e))
+        p4.value(config.rotateState == 1 and config.p4e)
+        p16.value(not (config.rotateState == 2 and config.p16e))
     else:
         # blinking disabled - set pins to static values
         p2.value(not config.p2e)
         p4.value(config.p4e)
         p16.value(not config.p16e)
 
+
 # main server loop
 while True:
-
     # loop for waiting for connection and blinking
     while True:
         ready, _, _ = select.select([s], [], [], 0.5)
@@ -124,7 +159,6 @@ while True:
         else:
             # timeout exceeded
             refresh()
-
     # process request
     data = cl.makefile('rwb', 0)
     # get HTTP header
