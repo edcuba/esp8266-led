@@ -32,6 +32,9 @@ You may need to use 220 Ohm resistor for connecting your LED to GPIO4. See follo
 - https://photos.app.goo.gl/AGtaYONGmuB03Nj02
 - https://photos.app.goo.gl/xhrKweaEnehSuP472
 
+NodeMCU Development kit provides access to these GPIOs of ESP8266. The only thing to take care is that NodeMCU Dev kit pins are numbered differently than internal GPIO notations of ESP8266 as shown in below figure and table. For example, the D0 pin on the NodeMCU Dev kit is mapped to the internal GPIO pin 16 of ESP8266. See this scheme: http://www.electronicwings.com/nodemcu/nodemcu-gpio-with-arduino-ide
+
+
 ## Implementation
 
 Project is implemented in MicroPython as simple iterative HTTP server using following predefined HTTP GET methods.
