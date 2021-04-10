@@ -2,7 +2,7 @@
 
 ## Author
 
-Eduard Čuba <xcubae00@stud.fit.vutbr.cz>
+Eduard Čuba
 
 ## Course
 
@@ -10,8 +10,8 @@ Microprocessors and Embedded Systems, Brno University of Technology, Faculty of 
 
 ## Description
 
-The application provides a simple browser interface for controlling LEDs attached to ESP8266 board.
-Server is runnning directly on ESP8266 board.
+The application provides a simple browser interface for controlling LEDs attached to the ESP8266 board.
+Server is runnning directly on the ESP8266 board.
 User can connect to the device using WiFi access point.
 - SSID: ESP8266
 - WPA2 password: xcubae00
@@ -20,15 +20,15 @@ User can connect to the device using WiFi access point.
 
 ## Commands
 
-The interface contains a control button for each of three LEDs, blink sequence button, rotation sequence button and basic system information.
+The interface contains a control button for each of the three LEDs, a blink sequence button, a rotation sequence button, and basic system information.
 
 - https://photos.app.goo.gl/stGbcUhomzzYHTZ83
 - https://photos.app.goo.gl/FtehtEO1xjZRt9a42
 
 ## Scheme
 
-Controller is using two built-in LEDs (GPIO2 and GPIO16) and one external connected to GPIO4.
-You may need to use 220 Ohm resistor for connecting your LED to GPIO4. See following pictures:
+The controller uses two built-in LEDs (GPIO2 and GPIO16) and one external connected to GPIO4.
+You may need to use a 220 Ohm resistor to connect the LED to GPIO4. See following pictures:
 - https://photos.app.goo.gl/AGtaYONGmuB03Nj02
 - https://photos.app.goo.gl/xhrKweaEnehSuP472
 
